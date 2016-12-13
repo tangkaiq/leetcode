@@ -1,0 +1,41 @@
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        //Invalid input
+        if(numRows<0) throw new IllegalArgumentException("Invalid input");
+
+
+        /**
+         * @param list
+         * @param tmp
+         * @param pre
+         * */
+        
+        List<List<Integer>> list = new ArrayList<>();
+
+        if(numRows>=1){
+            List<Integer> tmp = new ArrayList<>();
+            tmp.add(1);
+            list.add(tmp);
+        } 
+
+        if(numRows>=2){
+            List<Integer> tmp = new ArrayList<>();
+            tmp.add(1);
+            tmp.add(1);
+            list.add(tmp);
+        }
+        if(numRows>2){
+            for(int i=2;i<numRows;i++){
+                List<Integer> tmp = new ArrayList<>();
+                List<Integer> pre = list.get(i-1); 
+                tmp.add(1);
+                for(int j=1;j<i;j++){
+                    tmp.add(j,pre.get(j-1)+pre.get(j));
+                }
+                tmp.add(1);
+                list.add(tmp);
+            }
+        }
+        return list;
+    }
+}

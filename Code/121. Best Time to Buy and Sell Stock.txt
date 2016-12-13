@@ -1,0 +1,19 @@
+public class Solution {
+    public int maxProfit(int[] prices) {
+        //Invalid case
+        if(prices==null) throw new IllegalArgumentException("Invalid input");
+        
+        /**
+         * @param maxp
+         * @param lowest
+         * */
+        int maxp=0,lowest=Integer.MAX_VALUE;
+        for(int i=0;i<prices.length;i++){
+            if(prices[i]<lowest) lowest=prices[i];
+            else {
+                if(prices[i]-lowest>maxp) maxp=prices[i]-lowest;
+            }
+        }
+        return maxp;
+    }
+}
